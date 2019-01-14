@@ -25,10 +25,9 @@ contract RSVP {
         stakeholders = 0;
     }
 
-    function addCode(string _code) public restricted {
-        bytes32 hash = sha3(_code);
-        require (stakes[hash] == false); // Don't overwrite previous mappings and return false
-        stakes[hash] = true;
+    function addCode(bytes32 _hashedCode) public restricted {
+        require (stakes[_hashedCode] == false); // Don't overwrite previous mappings and return false
+        stakes[_hashedCode] = true;
     }
 
     function verifyCode(string _code) view public restricted returns (bool) {
